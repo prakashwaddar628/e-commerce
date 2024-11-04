@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import SetColor from "./SetColor";
 import SetQuantity from "./SetQuantity";
 import Button from "@/app/components/Button";
+import ProductImage from "@/ProductImage";
 
 interface ProductDetailsProps {
   product: any;
@@ -16,12 +17,12 @@ export type CartProductType = {
   description: string;
   category: string;
   brand: string;
-  selectedImg: selectedImgType;
+  selectedImg: SelectedImgType;
   quantity: number;
   price: number;
 };
 
-export type selectedImgType = {
+export type SelectedImgType = {
   color: string;
   colorCode: string;
   image: string;
@@ -42,14 +43,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     quantity: 1,
     price: product.price,
   });
-  console.log(cartProduct);
 
-  const productRating =
-    product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
-    product.reviews.length;
+  const productRating = product.reviews.length
+    ? product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
+      product.reviews.length
+    : 0;
 
   const handleColorSelect = useCallback(
-    (value: selectedImgType) => {
+    (value: SelectedImgType) => {
       setCartProduct((prev) => {
         return { ...prev, selectedImg: value };
       });
@@ -66,6 +67,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       quantity: prev.quantity + 1,
     }));
   }, [cartProduct]);
+
   const handleQtyDecrease = useCallback(() => {
     if (cartProduct.quantity === 1) {
       return;
@@ -76,9 +78,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     }));
   }, [cartProduct]);
 
+  console.log(product.images);
+
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div>Images</div>
+      <ProductImage
+        cartProduct={cartProduct}
+        product={product}
+        handleColorSelect={handleColorSelect}
+      />
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <div className="flex items-center gap-2">
@@ -89,7 +98,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         <div className="text-justify">{product.description}</div>
         <Horizontal />
         <div>
-          <span className="font-semibold">CATEGORY: </span> {product.caregory}
+          <span className="font-semibold">CATEGORY: </span> {product.category}
         </div>
         <div>
           <span className="font-semibold">BRAND: </span> {product.brand}

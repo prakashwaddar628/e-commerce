@@ -81,7 +81,7 @@ export const products = [
       },
       {
         color: "Blue",
-        colorCode: " #0000FF",
+        colorCode: "#0000FF",
         image:
           "https://m.media-amazon.com/images/I/713Om9vCHUL._AC_SX679_.jpg",
       },
