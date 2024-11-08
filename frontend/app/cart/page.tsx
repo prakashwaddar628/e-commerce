@@ -1,6 +1,12 @@
+import Container from "../components/Container";
+
 const Cart = () => {
     return ( 
-        <div>cart page</div>
+        <div className="pt-8">
+            <Container>
+                
+            </Container>
+        </div>
      );
 }
  

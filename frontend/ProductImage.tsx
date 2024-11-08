@@ -18,8 +18,11 @@ const ProductImage: React.FC<ProductImageProps> = ({
   handleColorSelect,
 }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]" >
-      <div className="flex flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]" style={{width:'fit-content'}}>
+    <div className="grid grid-cols-2 md:grid-cols-2 h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
+      <div
+        className="flex flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]"
+        style={{ width: "fit-content" }}
+      >
         {product.images.map((image: SelectedImgType) => {
           return (
             <div
@@ -42,10 +45,10 @@ const ProductImage: React.FC<ProductImageProps> = ({
           );
         })}
       </div>
-      <div className="col-span-5 relative aspect-auto w-fit" >
+      <div className="col-span-5 relative aspect-auto w-fit">
         <Image
-        src={cartProduct.selectedImg.image}
-        alt={cartProduct.name}
+          src={cartProduct.selectedImg.image}
+          alt={cartProduct.name}
           fill
           className="w-full h-full object-contain max-h-[500px] min-h-[300px] sm:min-h-[400px]"
         />

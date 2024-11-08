@@ -28,6 +28,7 @@ const Footer = () => {
           <FooterList>
             <Image
               src="/logo.png"
+              // fill
               width={250}
               height={50}
               alt="Logo"
