@@ -36,29 +36,32 @@ export const CartContextProvider = (props: Props) => {
 
   const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
+  console.log('qty', cartTotalQty);
+  console.log('amount', cartTotalAmount);
+
   useEffect(() => {
     const cartItems: any = localStorage.getItem("eShopItems");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
     const eshopPaymentIntent: any = localStorage.getItem("eshopPaymentIntent");
     const paymentIntent: string | null = JSON.parse(eshopPaymentIntent);
 
-    setCartProducts(cProducts || []);
+    setCartProducts(cProducts);
     setPaymentIntent(paymentIntent);
   }, []);
 
   useEffect(() => {
-    if (cartProducts) {
-      const totalQty = cartProducts.length;
-      setCartTotalQty(totalQty);
-    }
+    const totalQty =
+      cartProducts?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+    setCartTotalQty(totalQty);
   }, [cartProducts]);
 
   useEffect(() => {
     const getTotals = () => {
-      if (cartProducts) {
+        if (cartProducts) {
         const { total, qty } = cartProducts?.reduce(
           (acc, item) => {
             const itemTotal = item.price * item.quantity;
+
             acc.total += itemTotal;
             acc.qty += item.quantity;
 
@@ -72,8 +75,8 @@ export const CartContextProvider = (props: Props) => {
 
         setCartTotalQty(qty);
         setCartTotalAmount(total);
-      }
-    };
+      };
+    }
     getTotals();
   }, [cartProducts]);
 

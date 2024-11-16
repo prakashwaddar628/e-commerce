@@ -14,14 +14,15 @@ interface ItemContentProps {
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
-  const { handleRemoveProductFromCart, handleQtyIncrease, handleQtyDecrease } = useCart();
+  const { handleRemoveProductFromCart, handleQtyIncrease, handleQtyDecrease } =
+    useCart();
   return (
     <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-[1.5px] border-slate-200 py-4 items-center">
       <div className="col-span-2 justify-self-start flex gap-2 md:gap-4">
         <Link href={`/product/${item.id}`}>
           <div className="relative w-[70px] aspect-square">
             <Image
-              src={item.selectedImg.image}
+              src={item.selectedImg?.image || "/default-image.jpg"}
               fill
               className="object-contain"
               alt={item.name}
