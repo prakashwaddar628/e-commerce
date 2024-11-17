@@ -82,7 +82,7 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className="text-center ">Loading Checkou...</div>}
+      {loading && <div className="text-center ">Loading Checkout...</div>}
       {error && (
         <div className="text-center text-rose-500">Something went wrong.</div>
       )}

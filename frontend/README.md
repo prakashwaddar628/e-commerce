@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+<!-- install all the dependencies -->
+npm i micro
+
+install stripe from stripe.com
+
+connect with mogodb
+
+use next auth
+
+for google auth visit google cloud console
+
+get icons from react hot icons
+
+connect with prisma for mongoDB
+
+for storing the admin data we are using the firebase storage
+
+to connect firebase visit the official website
+
+
+
+<!-- run the command while payment gateway -->
+stripe listen --forward-to localhost:3000/api/stripe-webhook
