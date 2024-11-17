@@ -32,7 +32,7 @@ model Product {
   brand       String
   category    String
   inStock     Boolean
-  image       Image[]
+  images       Image[]
   reviews     Review[]
 }
 
