@@ -12,13 +12,10 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/ActionBtn";
-import { useCallback } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import moment from "moment";
 
-interface ManageOrdersClientProps {
+interface OrdersClientProps {
   orders: ExtendedOrder[];
 }
 
@@ -26,8 +23,9 @@ type ExtendedOrder = Order & {
   user: User;
 };
 
-const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
+const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   const router = useRouter();
+  
 
   const rows = orders?.map((order) => ({
     id: order.id,
@@ -108,14 +106,6 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       renderCell: (params) => (
         <div className="flex justify-between gap-4 w-full">
           <ActionBtn
-            icon={MdDeliveryDining}
-            onClick={() => handleDispatch(params.row.id)}
-          />
-          <ActionBtn
-            icon={MdDone}
-            onClick={() => handleDeliver(params.row.id)}
-          />
-          <ActionBtn
             icon={MdRemoveRedEye}
             onClick={() => router.push(`/order/${params.row.id}`)}
           />
@@ -124,42 +114,10 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     },
   ];
 
-  const handleDispatch = useCallback(
-    (id: string) => {
-      axios
-        .put("/api/order", { id, deliveryStatus: "dispatched" })
-        .then(() => {
-          toast.success("Order dispatched");
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(`Error dispatching order ${id}`);
-          console.error("Dispatch Error:", error);
-        });
-    },
-    [router]
-  );
-
-  const handleDeliver = useCallback(
-    (id: string) => {
-      axios
-        .put("/api/order", { id, deliveryStatus: "delivered" })
-        .then(() => {
-          toast.success("Order delivered");
-          router.refresh();
-        })
-        .catch((error) => {
-          toast.error(`Error delivering order ${id}`);
-          console.error("Delivery Error:", error);
-        });
-    },
-    [router]
-  );
-
   return (
     <div className="max-w-[1150px] m-auto text-xl">
       <div className="mb-4 mt-8">
-        <Heading title="Manage Orders" center />
+        <Heading title="Your Orders" center />
       </div>
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid
@@ -177,4 +135,4 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   );
 };
 
-export default ManageOrdersClient;
+export default OrdersClient;

@@ -76,16 +76,19 @@ const AddProductForm = () => {
 
     const uploadImages = images.map((item) => {
       if (item.image) {
-        // Use FileReader to get a Base64-encoded image string
         return new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.onerror = () => reject("Failed to read image file");
-          reader.readAsDataURL(item.image);
+          if (item.image instanceof File) {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = () => reject("Failed to read image file");
+            reader.readAsDataURL(item.image);
+          } else {
+            reject("Image is not a valid file");
+          }
         }).then((base64Image) => ({
           color: item.color,
           colorCode: item.colorCode,
-          image: base64Image, // Save as base64 string
+          image: base64Image,
         }));
       }
       return Promise.resolve(null);
@@ -106,7 +109,9 @@ const AddProductForm = () => {
       router.refresh();
     } catch (error) {
       console.error("Error saving product:", error);
-      toast.error("Something went wrong when saving the product to the database");
+      toast.error(
+        "Something went wrong when saving the product to the database"
+      );
     } finally {
       setIsLoading(false);
     }
