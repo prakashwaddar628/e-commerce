@@ -6,7 +6,7 @@ interface IParams {
 
 export default async function getProductById(params: IParams) {
   try {
-    const { productId } = params;
+    const { productId } = await params;
     const product = await prisma.product.findUnique({
       where: {
         id: productId,

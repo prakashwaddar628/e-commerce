@@ -6,42 +6,32 @@ import { useCallback } from "react";
 import { IconType } from "react-icons";
 import queryString from "query-string";
 
-interface CategoryProps {
+interface CategoriProps {
   label: string;
   icon: IconType;
   selected?: boolean;
 }
 
-const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
+const Categori: React.FC<CategoriProps> = ({ label, icon: Icon, selected }) => {
   const router = useRouter();
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
-    if (label === "All") {
-      router.push("/");
-    } else {
-      let currentQuery = {};
+    let currentQuery = {};
 
-      if (params) {
-        currentQuery = queryString.parse(params.toString());
-      }
-      const updatedQuery: any = {
-        ...currentQuery,
-        Category: label,
-      };
-
-      const url = queryString.stringify(
-        {
-          url: "/",
-          query: updatedQuery,
-        },
-        {
-          skipNull: true,
-        }
-      );
-
-      router.push(url);
+    if (params) {
+      currentQuery = queryString.parse(params.toString());
     }
+
+    const updatedQuery =
+      label === "All" ? {} : { ...currentQuery, category: label };
+
+    const url = queryString.stringifyUrl({
+      url: "/",
+      query: updatedQuery,
+    });
+
+    router.push(url);
   }, [label, params, router]);
 
   return (
@@ -53,6 +43,8 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
             ? "border-b-slate-800 text-slate-800"
             : "border-transparent text-slate-400"
         }`}
+      aria-selected={selected}
+      role="button"
     >
       <Icon size={20} />
       <div className="font-medium text-sm">{label}</div>
@@ -60,6 +52,4 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   );
 };
 
-export default Category;
-
-// this is sub navbar
+export default Categori;

@@ -51,7 +51,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const router = useRouter();
 
-  console.log(cartProducts);
 
   useEffect(() => {
     setProductInCart(false);
@@ -101,10 +100,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     }));
   }, [cartProduct]);
 
-  console.log(product.images);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="grid grid-cols-2 md:grid-cols-2 gap-12">
       <ProductImage
         cartProduct={cartProduct}
         product={product}

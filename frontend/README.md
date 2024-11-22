@@ -59,3 +59,7 @@ to connect firebase visit the official website
 
 <!-- run the command while payment gateway -->
 stripe listen --forward-to localhost:3000/api/stripe-webhook
+
+
+
+<!-- installed the react chart js for plotting the bar chart -->

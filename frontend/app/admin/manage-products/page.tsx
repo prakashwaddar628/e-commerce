@@ -12,7 +12,7 @@ const ManageProducts = async () => {
         return <NullData title="Oops! Access Denied"/>
     }
     return ( 
-        <div className="pt-8">
+        <div>
         <Container>
             <ManageProductsClient products= {products} />
         </Container>

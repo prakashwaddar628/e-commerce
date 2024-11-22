@@ -12,7 +12,7 @@ const AddProducts = async () => {
         return <NullData title="Oops! Access Denied"/>
     }
     return ( 
-        <div className="p-8">
+        <div>
             <Container>
                 <FormWrap>
                     <AddProductForm />

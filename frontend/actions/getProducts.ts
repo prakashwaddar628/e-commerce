@@ -7,33 +7,33 @@ export interface IProductParams {
 
 export default async function getProducts(params: IProductParams) {
   try {
-    const { category, searchTerm } = params;
-    let searchString = searchTerm;
+    const { category, searchTerm } = await params;
 
-    if (!searchTerm) {
-      searchString = "";
-    }
-    let query: any = {};
+    const query: any = {};
+
     if (category) {
       query.category = category;
     }
 
-    const products = await prisma.product.findMany({
-      where: {
-        ...query,
-        OR: [
-          {
-            name: {
-              contains: searchString,
-              mode: "insensitive",
-            },
-            description: {
-              contains: searchString,
-              mode: "insensitive",
-            },
+    if (searchTerm) {
+      query.OR = [
+        {
+          name: {
+            contains: searchTerm,
+            mode: "insensitive",
           },
-        ],
-      },
+        },
+        {
+          description: {
+            contains: searchTerm,
+            mode: "insensitive",
+          },
+        },
+      ];
+    }
+
+    const products = await prisma.product.findMany({
+      where: query,
       include: {
         reviews: {
           include: {
@@ -45,8 +45,10 @@ export default async function getProducts(params: IProductParams) {
         },
       },
     });
+
     return products;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error; // Preserve original error stack trace
   }
 }
