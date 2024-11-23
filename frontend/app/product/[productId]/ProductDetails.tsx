@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect } from "react";
 import SetColor from "./SetColor";
 import SetQuantity from "./SetQuantity";
 import Button from "@/app/components/Button";
-import ProductImage from "@/ProductImage";
+import ProductImage from "@/app/ProductImage";
 import { useCart } from "@/hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
