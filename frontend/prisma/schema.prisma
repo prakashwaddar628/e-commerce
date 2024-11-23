@@ -84,7 +84,7 @@ type Address {
   city        String
   country     String
   line1       String
-  line2       String
+  line2       String?
   postal_code String
   State       String
 }
