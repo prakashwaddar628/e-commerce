@@ -13,10 +13,12 @@ export async function DELETE(
     return new Response("Unauthorized", { status: 401 });
   }
 
+  // Directly use `params.id`
   const product = await prisma?.product.delete({
     where: {
-        id: params.id,
-        },
-  })
+      id: params.id,
+    },
+  });
+
   return NextResponse.json(product);
 }

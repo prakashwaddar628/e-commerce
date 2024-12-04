@@ -5,6 +5,8 @@
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off", // Disable the 'any' rule
-    "react-hooks/exhaustive-deps": "off" // Disable exhaustive deps warning
+    "react-hooks/exhaustive-deps": "off", // Disable exhaustive deps warning
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
   }
 }
