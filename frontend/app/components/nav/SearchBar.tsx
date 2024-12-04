@@ -8,7 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 const SearchBar = () => {
 
     const router = useRouter();
-    const { register, handleSubmit , reset, formState: {errors}} = useForm<FieldValues>({
+    const { register, handleSubmit , reset, formState: {}} = useForm<FieldValues>({
         defaultValues: {
             searchTerm: ''
         }

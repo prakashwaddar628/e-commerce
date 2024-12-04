@@ -94,7 +94,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     return (
       <div className="text-slate-500">
         <Heading title="Rate this product" />
-        <p>You can rate this product once it's delivered.</p>
+        <p>You can rate this product once it`&apos;`s delivered.</p>
       </div>
     );
   }

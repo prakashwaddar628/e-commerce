@@ -35,8 +35,7 @@ const Categori: React.FC<CategoriProps> = ({ label, icon: Icon, selected }) => {
   }, [label, params, router]);
 
   return (
-    <div
-      onClick={handleClick}
+    <div onClick={handleClick}
       className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer
         ${
           selected
@@ -44,7 +43,7 @@ const Categori: React.FC<CategoriProps> = ({ label, icon: Icon, selected }) => {
             : "border-transparent text-slate-400"
         }`}
       aria-selected={selected}
-      role="button"
+      role="tab"
     >
       <Icon size={20} />
       <div className="font-medium text-sm">{label}</div>

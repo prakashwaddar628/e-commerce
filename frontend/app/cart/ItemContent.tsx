@@ -6,7 +6,6 @@ import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
 import SetQuantity from "../product/[productId]/SetQuantity";
-import { useCallback } from "react";
 import { useCart } from "@/hooks/useCart";
 
 interface ItemContentProps {

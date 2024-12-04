@@ -119,7 +119,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         id,
         inStock: !inStock,
       })
-      .then((res) => {
+      .then(() => {
         toast.success("Product status changed");
         router.refresh();
       })

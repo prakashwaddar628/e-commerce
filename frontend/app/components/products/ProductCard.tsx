@@ -5,7 +5,6 @@ import { truncateText } from "@/utils/truncateText";
 import { Rating } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { format } from "path";
 
 interface ProductCardProps {
   data: any;
